@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Offboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Off board</h2>
+<div class="row">
+    <div class="col-md-4">
+        <label>Insert Display Name Member Off Board</label><br />
+        <label>Display Name</label>
+        <input id="displayname" type="text" placeholder="Insert Display Name" /><br />
+        <label>Username</label>
+        <input id="username" type="text" placeholder="Insert Username" />
+    </div>
+    <div class="col-md-4">
+        <label>Tool Management</label><br />
+        <label id="groupjira">---   Jira</label>
+        <input type=button
+               onClick="parent.open('https://admin.atlassian.com/s/b9b1f55c-24d2-4154-a42f-f2fb1e7e441e/users')"
+               value='Jira Management'
+               disabled
+               id="btnjiramanagement">
+        <br>
+        <label id="ninety">---   Ninety.io</label>
+        <input type="button"
+               onclick="parent.open('https://app.ninety.io/directory')"
+               value="Ninety Management"
+               disabled
+               id="btnninetymanagement">
+        <br>
+    </div>
+</div>
+
+<br />
+<button onclick="checkdatainput()">
+    Create Mail Warning
+</button>
+<br />
+<br />
+<div>
+    <br />
+    <label>Email to Line Managers And Project Managers Viet Nam</label><br>
+    <label>-> Use Account Tech Admin Send To Line Managers and Project Managers</label><br>
+    <br />
+    <label>To</label><br>
+    <textarea id="emailto" rows="1"></textarea>
+    <label>CC</label><br>
+    <textarea id="ccto" rows="1"></textarea>
+    <br /><br />
+    <label rows="1">Title Mail 45 days</label>
+    <textarea id="titlemail45days" rows="1"></textarea>
+    <label>Content Mail 45 days</label>
+    <textarea id="contenmail45days" rows="7"></textarea><br />
+    <br />
+    <label>Title Mail 30 days</label>
+    <textarea id="titlemail30days" rows="1"></textarea>
+    <label>Content Mail 30 days</label>
+    <textarea id="contenmail30days" rows="7"></textarea><br />
+    <br />
+    <label>Title Mail 7 days</label>
+    <textarea id="titlemail7days" rows="1"></textarea>
+    <label>Content Mail 7 days</label>
+    <textarea id="contenmail7days" rows="7"></textarea>
+
+</div>
+<script>
+    function checkdatainput() {
+        if (document.getElementById("displayname").value.length == 0) {
+            alert("Please insert Display Name");
+        }
+        else {
+            mailoutput();
+        }
+    }
+    function mailoutput() {
+        document.getElementById("emailto").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
+        document.getElementById("ccto").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
+        var displayname = document.getElementById("displayname").value;
+        var titlemail45days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 45 days";
+        var contenmail45days = "Hi all,\n\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 45 days. " +
+            "You and your team member still have time to copy important documents to another location. " +
+            "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
+            "Warm Regards.\n" +
+            "IT Team"
+        document.getElementById("titlemail45days").innerHTML = titlemail45days
+        document.getElementById("contenmail45days").innerHTML = contenmail45days
+        var displayname = document.getElementById("displayname").value;
+        var titlemail30days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 30 days";
+        var contenmail30days = "Hi all,\n\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 30 days. " +
+            "You and your team member still have time to copy important documents to another location. " +
+            "After 30 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
+            "Warm Regards.\n" +
+            "IT Team"
+        document.getElementById("titlemail30days").innerHTML = titlemail30days
+        document.getElementById("contenmail30days").innerHTML = contenmail30days
+        var displayname = document.getElementById("displayname").value;
+        var titlemail7days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 7 days";
+        var contenmail7days = "Hi all,\n\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 7 days. " +
+            "You and your team member still have time to copy important documents to another location. " +
+            "After 7 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
+            "Warm Regards.\n" +
+            "IT Team"
+        document.getElementById("titlemail7days").innerHTML = titlemail7days
+        document.getElementById("contenmail7days").innerHTML = contenmail7days
+    }
+</script>

@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "Onboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Onboard</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div>
+                <label>Display Name</label>
+                <input id="displayname" type="text" placeholder="Insert Display Name" />
+            </div>
+            <div>
+                <label>Username</label>
+                <input id="username" type="text" placeholder="Insert Username" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input id="password" type="password" placeholder="Insert Password" />
+            </div>
+            <div>
+                <label>Date Onboard</label>
+                <input id="dateob" type="date" />
+            </div>
+            <div>
+                <label>Gender</label>
+                <input type="radio" id="gdgentlement" name="gender">Gentlement
+                <input type="radio" id="gdlady" name="gender">Lady
+
+            </div>
+            <div>
+                <label>Position</label>
+                <input type="radio" id="dev" name="position">Developer
+                <input type="radio" id="qc" name="position">QC
+                <input type="radio" id="notdev" name="position">Another
+            </div>
+            <div>
+                <label>Team</label>
+                <input type="radio" id="linkit" name="team">Linkit
+                <input type="radio" id="notlinkit" name="team">Another
+            </div>
+            <br>
+            <label id="groupjira">---   Group Jira</label>
+            <input type=button 
+                   onClick="parent.open('https://admin.atlassian.com/s/b9b1f55c-24d2-4154-a42f-f2fb1e7e441e/users')"
+                   value='Jira Management'
+                   disabled
+                   id="btnjiramanagement">
+            <br>
+            <input type="checkbox">
+            <label>Project</label><br>
+            <input type="checkbox">
+            <label>cc-user</label><br>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div>
+            <label id="ninety">---   Ninety.io</label>
+            <input type="button"
+                   onclick="parent.open('https://app.ninety.io/directory')"
+                   value="Ninety Management" 
+                   disabled
+                   id="btnninetymanagement">
+            <br>
+            <input type="checkbox">
+            <label>Line_team</label><br>
+            <br>
+            <label id="groupo365">---   Group Office 365</label>
+            <input type="button"
+                   onclick="parent.open('https://admin.microsoft.com/AdminPortal/Home#/users')"
+                   value="Outlook 365 Management" 
+                   disabled
+                   id="btngroupo365management">
+            <br>
+            <input type="checkbox">
+            <label>DevBlocker VietNam</label><br>
+            <input type="checkbox">
+            <label>DevBlock</label><br>
+            <input type="checkbox">
+            <label>Gentlement/Lady</label><br>
+            <input type="checkbox">
+            <label>Line Team</label><br>
+            <input type="checkbox">
+            <label>All DevBlock</label><br>
+            <input type="checkbox">
+            <label>All Users</label><br>
+            <input type="checkbox">
+            <label>DevBlockVN_User</label><br>
+            <input type="checkbox">
+            <label>Project</label><br>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div>
+            <label id="linkitgroup">---   Linkit Group</label><br>
+            <label id="linkitall">All member Linkit</label><br>
+            <input type="checkbox">
+            <label>Linkit@devblock.net</label><br>
+            <input type="checkbox">
+            <label>LinkitWiki@devblock.net</label><br>
+            <input type="checkbox">
+            <label>linkitvina@devblock.net</label><br>
+            <label id="linkitdev">Only Dev Linkit</label><br>
+            <input type="checkbox">
+            <label>linkitvina.dev@devblock.net</label><br>
+            <input type="checkbox">
+            <label>vinadev.linkit@devblock.net</label><br>
+            <label id="linkitqc">Only QC Linkit</label><br>
+            <input type="checkbox">
+            <label>linkitqc@devblock.net</label><br>
+            <label>TungNT-DungNT-DuongDA-KienTV-HiepBH-HuyNM</label><br>
+            <input type="checkbox">
+            <label>linkit.notification@devblock.net</label><br>
+        </div>
+    </div>
+</div>
+<div>
+    <button onclick="checkdatainput()">
+        Create Welcome note And Mail Onboard
+    </button>
+    <label id="pleaseadd">    ...</label>
+</div>
+
+<div>
+    <label>Welcome Note</label><br>
+    <label>Please print and give to new member</label><br>
+    <textarea id="welcomenoteoutput" rows="19"></textarea>
+</div>
+<div>
+    <label>Email to HR</label><br>
+    <label>Send Information to Operation Team</label><br>
+    <textarea id="emailto" rows="1"></textarea>
+    <label>CC Email</label><br>
+    <textarea id="ccto" rows="1"></textarea>
+    <label>Title</label>
+    <textarea id="titlemail" rows="1"></textarea>
+    <label>Content</label><br>
+    <textarea id="contenmail" rows="10"></textarea>
+</div>
+
+
+
+<script>
+    function checkdatainput() {
+        if (document.getElementById("displayname").value.length == 0) {
+            alert("Please insert Display Name")
+        }
+        else if (document.getElementById("username").value.length == 0) {
+            alert("Please insert Username")
+        }
+        else if (document.getElementById("password").value.length == 0) {
+            alert("Please insert Password")
+        }
+        else if (Date.parse(document.getElementById("dateob").value) < Number(new Date())) {
+            alert("dateob")
+        }
+        else if (document.getElementById("gdgentlement").checked == false && document.getElementById("gdlady").checked == false) {
+            alert("Please recheck Gender")
+        }
+        else if (document.getElementById("dev").checked == false && document.getElementById("qc").checked == false && document.getElementById("notdev").checked == false) {
+            alert("Please recheck Role")
+        }
+        else if (document.getElementById("linkit").checked == false && document.getElementById("notlinkit").checked == false) {
+            alert("Please recheck Linkit")
+        }
+        else {
+            printdata();
+            highligh();
+        }
+
+    }
+    function highligh() {
+        document.getElementById("groupjira").style.background = "yellow";
+        document.getElementById("ninety").style.background = "yellow";
+        document.getElementById("groupo365").style.background = "yellow";
+        if (document.getElementById("linkit").checked == true) {
+            document.getElementById("linkitall").style.background = "yellow";
+            document.getElementById("linkitgroup").style.background = "yellow";
+
+            if (document.getElementById("dev").checked == true)
+                document.getElementById("linkitdev").style.background = "yellow";
+            if (document.getElementById("qc").checked == true)
+                document.getElementById("linkitqc").style.background = "yellow";
+        }
+    }
+    function printdata() {
+
+        var displayname = document.getElementById("displayname").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var dateob = document.getElementById("dateob").value;
+        var gender = "";
+        if (document.getElementById("gdgentlement").checked == true)
+            gender = "Mr";
+        else
+            gender = "Ms";
+        var role = "";
+        if (document.getElementById("dev").checked == true)
+            role = "\thttps://bitbucket.org/vinasource/\n";
+        var welcomenote = "Hi " + gender + "." + displayname +  ", \n\n" +
+            "By the time you read this message, you have become a DevBlocker.\n" +
+            "It is great pleasure to have you with us on this journey and we hope you will have a pleasant experience.\n" +
+            "This is your laptop, the default password is 123456, you must change it soon due to security problem.\n\n" +
+            "Your account Office365 : \n" +
+            "\tDisplay Name :    " + displayname + "\n" +
+            "\tUsername       :    " + username + "devblock.net\n" +
+            "\tPassword        :    " + password + "\n\n" +
+            "Now, you need to access : https://outlook.office.com/mail/ to login account. This link contains your mailbox, calendar, onedrive, etc.\n" +
+            "After that, you need to login Teams using Office365 to communicate with your fellow DevBlockers.\n" +
+            "For further enquires on work software, contact your Project Manager, Line Manager or team member. \n" +
+            "Password Wifi : DevBlocker@2019\n" +
+            "Once again welcome to DevBlock :) .\n\n" +
+            "Warm Regards.\n" +
+            "IT Team.";
+        document.getElementById("welcomenoteoutput").innerHTML = welcomenote
+        document.getElementById("pleaseadd").innerHTML = "Please Add New Member To Highligh Group"
+        document.getElementById("btnjiramanagement").disabled = false
+        document.getElementById("btnjiramanagement").style.background = "yellow"
+        document.getElementById("btnninetymanagement").disabled = false
+        document.getElementById("btnninetymanagement").style.background = "yellow"
+        document.getElementById("btngroupo365management").disabled = false
+        document.getElementById("btngroupo365management").style.background = "yellow"
+        document.getElementById("emailto").innerHTML = "DevBlockOpsTeam@devblock.net"
+        document.getElementById("ccto").innerHTML = "trucpt@devblock.net;khoalnd@devblock.net"
+        document.getElementById("titlemail").innerHTML = "Title mail"
+
+        var titlemail = "Account " + username + "Is Ready - On Board On " + dateob
+        document.getElementById("titlemail").innerHTML = titlemail
+        var contenmail = "Dear all,\n \n" +
+            "Account " + username + " is ready now, " + username + " can access:\n " +
+            "\thttps://outlook.office.com/mail/\n" +
+            "\thttps://devblock.atlassian.net/jira/your-work\n" +
+            "\thttps://www.ninety.io/\n" +
+            "" + role +
+            "IT Team will send login information when " + username + " comes to DevBlock." +
+            "If we have missed anything please feel free to ask.\n \n" +
+            "Warm Regards.\n" +
+            "PhongTD.";
+        document.getElementById("contenmail").innerHTML = contenmail
+    }
+
+</script>

@@ -26,5 +26,23 @@ namespace ITBoardSupportWeb.Controllers
 
             return View();
         }
+        public ActionResult Onboard()
+        {
+            ViewBag.Message = "Page process On.";
+
+            return View();
+        }
+        public ActionResult Offboard()
+        {
+            ViewBag.Message = "Page process offboard.";
+
+            return View();
+        }
+        public ActionResult Buydevice()
+        {
+            ViewBag.Message = "Page process Buy Device.";
+
+            return View();
+        }
     }
 }
