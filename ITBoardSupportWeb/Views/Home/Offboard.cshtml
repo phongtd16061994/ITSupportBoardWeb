@@ -11,24 +11,37 @@
         <label>Display Name</label>
         <input id="displayname" type="text" placeholder="Insert Display Name" /><br />
         <label>Username</label>
-        <input id="username" type="text" placeholder="Insert Username" />
+        <input id="username" type="text" placeholder="Insert Username" /> <br />
+        <label>Date Resign</label>
+        <input id="dateresign" type="date" /><br />
+        <label>Gender</label>
+        <input type="radio" id="gdgentlement" name="gender">Gentlement
+        <input type="radio" id="gdlady" name="gender">Lady
     </div>
     <div class="col-md-4">
-        <label>Tool Management</label><br />
-        <label id="groupjira">---   Jira</label>
+        <label>Tool Management 's IT</label><br />
+        <label id="groupo365">---   Outlook 365</label><br>
         <input type=button
-               onClick="parent.open('https://admin.atlassian.com/s/b9b1f55c-24d2-4154-a42f-f2fb1e7e441e/users')"
-               value='Jira Management'
+               onClick="parent.open('https://admin.microsoft.com/AdminPortal/Home#/users')"
+               value='Outlook 365 '
                disabled
-               id="btnjiramanagement">
+               id="btngroupo365">
         <br>
-        <label id="ninety">---   Ninety.io</label>
+        <label id="groupjira">---   Jira</label><br>
+        <input type=button
+               onClick="openjiramanagement()"
+               value='Jira Users Management'
+               disabled
+               id="btnjira">
+        <br>
+        <label id="ninety">---   Ninety.io</label><br>
         <input type="button"
                onclick="parent.open('https://app.ninety.io/directory')"
-               value="Ninety Management"
+               value="Ninety User Management"
                disabled
-               id="btnninetymanagement">
+               id="btnninety">
         <br>
+        
     </div>
 </div>
 
@@ -51,59 +64,89 @@
     <label rows="1">Title Mail 45 days</label>
     <textarea id="titlemail45days" rows="1"></textarea>
     <label>Content Mail 45 days</label>
-    <textarea id="contenmail45days" rows="7"></textarea><br />
+    <textarea id="contenmail45days" rows="10"></textarea><br />
     <br />
     <label>Title Mail 30 days</label>
     <textarea id="titlemail30days" rows="1"></textarea>
     <label>Content Mail 30 days</label>
-    <textarea id="contenmail30days" rows="7"></textarea><br />
+    <textarea id="contenmail30days" rows="10"></textarea><br />
     <br />
     <label>Title Mail 7 days</label>
     <textarea id="titlemail7days" rows="1"></textarea>
     <label>Content Mail 7 days</label>
-    <textarea id="contenmail7days" rows="7"></textarea>
+    <textarea id="contenmail7days" rows="10"></textarea>
 
 </div>
 <script>
+    function openjiramanagement() {
+        var username = document.getElementById("username").value
+        parent.open('https://admin.atlassian.com/s/b9b1f55c-24d2-4154-a42f-f2fb1e7e441e/users?displayName=' + username)
+    }
     function checkdatainput() {
         if (document.getElementById("displayname").value.length == 0) {
             alert("Please insert Display Name");
         }
+        else if (document.getElementById("username").value.length == 0) {
+            alert("Please insert Username")
+        }
+        else if (!document.getElementById("dateresign").value) {
+            alert("Please insert Date Resign")
+        }
+        else if (document.getElementById("gdgentlement").checked == false && document.getElementById("gdlady").checked == false) {
+            alert("Please recheck Gender")
+        }
         else {
             mailoutput();
+            enablebtnmanagement();
         }
     }
+    function enablebtnmanagement() {
+        document.getElementById("btngroupo365").disabled = false
+        document.getElementById("btnjira").disabled = false
+        document.getElementById("btnninety").disabled = false
+
+    }
     function mailoutput() {
-        document.getElementById("emailto").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
-        document.getElementById("ccto").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
-        var displayname = document.getElementById("displayname").value;
-        var titlemail45days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 45 days";
+        var displayname = document.getElementById("displayname").value
+        var username = document.getElementById("username").value;
+        var dateresign = document.getElementById("dateresign").value;
+        var gender = "";
+        if (document.getElementById("gdgentlement").checked == true)
+            gender = "he";
+        else
+            gender = "she";
+        var titlemail45days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 45 days";
         var contenmail45days = "Hi all,\n\n" +
-            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 45 days. " +
-            "You and your team member still have time to copy important documents to another location. " +
-            "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender+" resign on " + dateresign+".\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 45 days. \n" +
+            "You and your team member still have time to copy important documents to another location. \n" +
+            "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
             "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
             "Warm Regards.\n" +
             "IT Team"
+        document.getElementById("emailto").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
+        document.getElementById("ccto").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
         document.getElementById("titlemail45days").innerHTML = titlemail45days
         document.getElementById("contenmail45days").innerHTML = contenmail45days
         var displayname = document.getElementById("displayname").value;
-        var titlemail30days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 30 days";
+        var titlemail30days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 30 days";
         var contenmail30days = "Hi all,\n\n" +
-            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 30 days. " +
-            "You and your team member still have time to copy important documents to another location. " +
-            "After 30 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resign on " + dateresign + ".\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 30 days. \n" +
+            "You and your team member still have time to copy important documents to another location. \n" +
+            "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
             "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
             "Warm Regards.\n" +
             "IT Team"
         document.getElementById("titlemail30days").innerHTML = titlemail30days
         document.getElementById("contenmail30days").innerHTML = contenmail30days
         var displayname = document.getElementById("displayname").value;
-        var titlemail7days = "Notice: " + displayname + "'s OneDrive contents will be deleted in 7 days";
+        var titlemail7days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 7 days";
         var contenmail7days = "Hi all,\n\n" +
-            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 7 days. " +
-            "You and your team member still have time to copy important documents to another location. " +
-            "After 7 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. " +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resign on " + dateresign + ".\n" +
+            "" + displayname + "'s OneDrive is scheduled for permanent deletion in 7 days. \n" +
+            "You and your team member still have time to copy important documents to another location. \n" +
+            "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
             "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
             "Warm Regards.\n" +
             "IT Team"

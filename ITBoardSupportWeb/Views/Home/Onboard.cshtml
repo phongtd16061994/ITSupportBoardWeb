@@ -84,7 +84,7 @@
             <label>Line Team</label><br>
             <input type="checkbox">
             <label>All DevBlock</label><br>
-            <input type="checkbox">
+            <input type="checkbox" >
             <label>All Users</label><br>
             <input type="checkbox">
             <label>DevBlockVN_User</label><br>
@@ -96,23 +96,23 @@
         <div>
             <label id="linkitgroup">---   Linkit Group</label><br>
             <label id="linkitall">All member Linkit</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="Linkitcb">
             <label>Linkit@devblock.net</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="LinkitWiki">
             <label>LinkitWiki@devblock.net</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="linkitvina">
             <label>linkitvina@devblock.net</label><br>
             <label id="linkitdev">Only Dev Linkit</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="linkitvina.devcb">
             <label>linkitvina.dev@devblock.net</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="vinadev.linkitcb">
             <label>vinadev.linkit@devblock.net</label><br>
             <label id="linkitqc">Only QC Linkit</label><br>
-            <input type="checkbox">
+            <input type="checkbox" id="linkitqccb">
             <label>linkitqc@devblock.net</label><br>
-            <label>TungNT-DungNT-DuongDA-KienTV-HiepBH-HuyNM</label><br>
+            @*<label>TungNT-DungNT-DuongDA-KienTV-HiepBH-HuyNM</label><br>
             <input type="checkbox">
-            <label>linkit.notification@devblock.net</label><br>
+            <label>linkit.notification@devblock.net</label><br>*@
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
     <label>Title</label>
     <textarea id="titlemail" rows="1"></textarea>
     <label>Content</label><br>
-    <textarea id="contenmail" rows="10"></textarea>
+    <textarea id="contenmail" rows="12"></textarea>
 </div>
 
 
@@ -179,10 +179,23 @@
             document.getElementById("linkitall").style.background = "yellow";
             document.getElementById("linkitgroup").style.background = "yellow";
 
-            if (document.getElementById("dev").checked == true)
+            if (document.getElementById("dev").checked == true) {
                 document.getElementById("linkitdev").style.background = "yellow";
-            if (document.getElementById("qc").checked == true)
+                document.getElementById("linkitqccb").disabled = true;
+            }
+            if (document.getElementById("qc").checked == true) {
                 document.getElementById("linkitqc").style.background = "yellow";
+                document.getElementById("linkitvina.devcb").disabled = true;
+                document.getElementById("vinadev.linkitcb").disabled = true;
+            }
+        }
+        else {
+            document.getElementById("Linkitcb").disabled = true;
+            document.getElementById("LinkitWiki").disabled = true;
+            document.getElementById("linkitvina").disabled = true;
+            document.getElementById("linkitvina.devcb").disabled = true;
+            document.getElementById("vinadev.linkitcb").disabled = true;
+            document.getElementById("linkitqccb").disabled = true;
         }
     }
     function printdata() {
@@ -205,7 +218,7 @@
             "This is your laptop, the default password is 123456, you must change it soon due to security problem.\n\n" +
             "Your account Office365 : \n" +
             "\tDisplay Name :    " + displayname + "\n" +
-            "\tUsername       :    " + username + "devblock.net\n" +
+            "\tUsername       :    " + username + "@@devblock.net\n" +
             "\tPassword        :    " + password + "\n\n" +
             "Now, you need to access : https://outlook.office.com/mail/ to login account. This link contains your mailbox, calendar, onedrive, etc.\n" +
             "After that, you need to login Teams using Office365 to communicate with your fellow DevBlockers.\n" +
@@ -226,15 +239,15 @@
         document.getElementById("ccto").innerHTML = "trucpt@devblock.net;khoalnd@devblock.net"
         document.getElementById("titlemail").innerHTML = "Title mail"
 
-        var titlemail = "Account " + username + "Is Ready - On Board On " + dateob
+        var titlemail = "Account " + username + " Is Ready - On Board On " + dateob
         document.getElementById("titlemail").innerHTML = titlemail
         var contenmail = "Dear all,\n \n" +
             "Account " + username + " is ready now, " + username + " can access:\n " +
-            "\thttps://outlook.office.com/mail/\n" +
+            "\t https://outlook.office.com/mail/\n" +
             "\thttps://devblock.atlassian.net/jira/your-work\n" +
             "\thttps://www.ninety.io/\n" +
             "" + role +
-            "IT Team will send login information when " + username + " comes to DevBlock." +
+            "IT Team will send login information when " + username + " comes to DevBlock.\n" +
             "If we have missed anything please feel free to ask.\n \n" +
             "Warm Regards.\n" +
             "PhongTD.";
