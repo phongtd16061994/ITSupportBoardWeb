@@ -60,16 +60,26 @@
     <textarea id="emailto" rows="1"></textarea>
     <label>CC</label><br>
     <textarea id="ccto" rows="1"></textarea>
-    <br /><br />
+    <br />
     <label rows="1">Title Mail 45 days</label>
     <textarea id="titlemail45days" rows="1"></textarea>
     <label>Content Mail 45 days</label>
     <textarea id="contenmail45days" rows="10"></textarea><br />
     <br />
+    <label>To</label><br>
+    <textarea id="emailto30" rows="1"></textarea>
+    <label>CC</label><br>
+    <textarea id="ccto30" rows="1"></textarea>
+    <br />
     <label>Title Mail 30 days</label>
     <textarea id="titlemail30days" rows="1"></textarea>
     <label>Content Mail 30 days</label>
     <textarea id="contenmail30days" rows="10"></textarea><br />
+    <br />
+    <label>To</label><br>
+    <textarea id="emailto7" rows="1"></textarea>
+    <label>CC</label><br>
+    <textarea id="ccto7" rows="1"></textarea>
     <br />
     <label>Title Mail 7 days</label>
     <textarea id="titlemail7days" rows="1"></textarea>
@@ -115,23 +125,24 @@
             gender = "he";
         else
             gender = "she";
+        document.getElementById("emailto").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
+        document.getElementById("ccto").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
         var titlemail45days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 45 days";
         var contenmail45days = "Hi all,\n\n" +
-            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender+" resign on " + dateresign+".\n" +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender+" resigned on " + dateresign+".\n" +
             "" + displayname + "'s OneDrive is scheduled for permanent deletion in 45 days. \n" +
             "You and your team member still have time to copy important documents to another location. \n" +
             "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
             "Please contact IT Team(PhongTD or KhoaLND) to copy important documents.\n\n" +
             "Warm Regards.\n" +
             "IT Team"
-        document.getElementById("emailto").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
-        document.getElementById("ccto").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
         document.getElementById("titlemail45days").innerHTML = titlemail45days
         document.getElementById("contenmail45days").innerHTML = contenmail45days
-        var displayname = document.getElementById("displayname").value;
+        document.getElementById("emailto30").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
+        document.getElementById("ccto30").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
         var titlemail30days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 30 days";
         var contenmail30days = "Hi all,\n\n" +
-            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resign on " + dateresign + ".\n" +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resigned on " + dateresign + ".\n" +
             "" + displayname + "'s OneDrive is scheduled for permanent deletion in 30 days. \n" +
             "You and your team member still have time to copy important documents to another location. \n" +
             "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
@@ -140,10 +151,11 @@
             "IT Team"
         document.getElementById("titlemail30days").innerHTML = titlemail30days
         document.getElementById("contenmail30days").innerHTML = contenmail30days
-        var displayname = document.getElementById("displayname").value;
+        document.getElementById("emailto7").innerHTML = "lm@devblock.net;pmvietnam@devblock.net"
+        document.getElementById("ccto7").innerHTML = "phongtd@devblock.net;khoalnd@devblock.net"
         var titlemail7days = "Notice: " + displayname + "'s OneDrive contents will be permanently deleted after 7 days";
         var contenmail7days = "Hi all,\n\n" +
-            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resign on " + dateresign + ".\n" +
+            "" + displayname + " has account " + username + "@@devblock.net has been disabled when " + gender + " resigned on " + dateresign + ".\n" +
             "" + displayname + "'s OneDrive is scheduled for permanent deletion in 7 days. \n" +
             "You and your team member still have time to copy important documents to another location. \n" +
             "After 45 days, " + displayname + "'s OneDrive will be permanently deleted - can't restore. Please notify your team members.\n" +
